@@ -1,6 +1,7 @@
 usager_list:
   path: /usagers
   controller: App\Controller\UsagerController::list
+
 show_usager:
   path: /usagers/{id}
   controller: App\Controller\UsagerController::show
@@ -12,3 +13,11 @@ caracteristique_list:
 show_caracterisque:
   path: /caracterisques/{id}
   controller: App\Controller\CaracteristiqueController::show
+
+lieux_list:
+  path: /lieux
+  controller: App\Controller\LieuxController::list
+
+show_lieux:
+  path: /lieux/{id}
+  controller: App\Controller\LieuxController::show
