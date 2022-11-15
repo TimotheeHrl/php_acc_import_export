@@ -21,3 +21,11 @@ lieux_list:
 show_lieux:
   path: /lieux/{id}
   controller: App\Controller\LieuxController::show
+
+vehicule_list:
+  path: /vehicules
+  controller: App\Controller\VehiculeController::list
+
+show_vehicule:
+  path: /vehicules/{id}
+  controller: App\Controller\VehiculeController::show
