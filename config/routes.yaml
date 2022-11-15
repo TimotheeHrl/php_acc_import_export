@@ -1,7 +1,14 @@
 usager_list:
-  path: /usager
-  # the controller value has the format 'controller_class::method_name'
+  path: /usagers
   controller: App\Controller\UsagerController::list
 show_usager:
-  path: /usager/{id}
+  path: /usagers/{id}
   controller: App\Controller\UsagerController::show
+
+caracteristique_list:
+  path: /caracterisques
+  controller: App\Controller\CaracteristiqueController::list
+
+show_caracterisque:
+  path: /caracterisques/{id}
+  controller: App\Controller\CaracteristiqueController::show
