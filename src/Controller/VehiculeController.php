@@ -28,4 +28,14 @@ class VehiculeController extends AbstractController
         $vehicule = $vehiculeRepository->find($id);
         return $this->json($vehicule);
     }
+
+
+    /**
+     * @Route("/api/vehicule/{num_Acc}", name="searchByNum_Acc_vehicule", methods={"GET","HEAD"})
+     */
+    public function searchByNum_Acc(VehiculeRepository $vehiculeRepository, string $num_Acc): JsonResponse
+    {
+        $data = $vehiculeRepository->findByNum_Acc($num_Acc);
+        return $this->json($data);
+    }
 }

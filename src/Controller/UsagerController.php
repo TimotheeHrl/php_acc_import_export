@@ -28,4 +28,14 @@ class UsagerController extends AbstractController
         $usager = $usagersRepository->find($id);
         return $this->json($usager);
     }
+
+
+    /**
+     * @Route("/api/lieux/{num_Acc}", name="searchByNum_Acc_usagers", methods={"GET","HEAD"})
+     */
+    public function searchByNum_Acc(UsagersRepository $usagersRepository, string $num_Acc): JsonResponse
+    {
+        $data = $usagersRepository->findByNum_Acc($num_Acc);
+        return $this->json($data);
+    }
 }

@@ -39,6 +39,18 @@ class UsagersRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @return Usagers[] Returns an array of Caracteristique objects
+     */
+    public function findByNum_Acc(string $num_Acc): array
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.num_Acc = :val')
+            ->setParameter('val', $num_Acc)
+            ->getQuery()
+            ->getResult();
+    }
+
 
     //    /**
     //     * @return Usagers[] Returns an array of Usagers objects

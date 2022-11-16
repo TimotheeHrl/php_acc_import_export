@@ -28,4 +28,13 @@ class CaracteristiqueController extends AbstractController
         $caracteristique = $caracteristiqueRepository->find($id);
         return $this->json($caracteristique);
     }
+
+    /**
+     * @Route("/api/usager/{num_Acc}", name="searchByNum_Acc_caracteristiques", methods={"GET","HEAD"})
+     */
+    public function searchByNum_Acc(CaracteristiqueRepository $caracteristiqueRepository, string $num_Acc): JsonResponse
+    {
+        $data = $caracteristiqueRepository->findByNum_Acc($num_Acc);
+        return $this->json($data);
+    }
 }

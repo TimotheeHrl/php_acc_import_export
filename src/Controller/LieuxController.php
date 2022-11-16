@@ -28,4 +28,13 @@ class LieuxController extends AbstractController
         $lieux = $lieuxRepository->find($id);
         return $this->json($lieux);
     }
+
+    /**
+     * @Route("/api/lieux/{num_Acc}", name="searchByNum_Acc_lieux", methods={"GET","HEAD"})
+     */
+    public function searchByNum_Acc(LieuxRepository $lieuxRepository, string $num_Acc): JsonResponse
+    {
+        $data = $lieuxRepository->findByNum_Acc($num_Acc);
+        return $this->json($data);
+    }
 }

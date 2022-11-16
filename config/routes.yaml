@@ -6,6 +6,10 @@ show_usager:
   path: /usagers/{id}
   controller: App\Controller\UsagerController::show
 
+searchByNum_Acc_usagers:
+  path: /usagers/num_acc/{num_Acc}
+  controller: App\Controller\UsagerController::searchByNum_Acc
+
 caracteristique_list:
   path: /caracterisques
   controller: App\Controller\CaracteristiqueController::list
@@ -13,6 +17,10 @@ caracteristique_list:
 show_caracterisque:
   path: /caracterisques/{id}
   controller: App\Controller\CaracteristiqueController::show
+
+searchByNum_Acc_caracteristiques:
+  path: /caracterisques/num_acc/{num_Acc}
+  controller: App\Controller\CaracteristiqueController::searchByNum_Acc
 
 lieux_list:
   path: /lieux
@@ -22,6 +30,10 @@ show_lieux:
   path: /lieux/{id}
   controller: App\Controller\LieuxController::show
 
+searchByNum_Acc_lieux:
+  path: /lieux/num_acc/{num_Acc}
+  controller: App\Controller\LieuxController::searchByNum_Acc
+
 vehicule_list:
   path: /vehicules
   controller: App\Controller\VehiculeController::list
@@ -29,3 +41,7 @@ vehicule_list:
 show_vehicule:
   path: /vehicules/{id}
   controller: App\Controller\VehiculeController::show
+
+searchByNum_Acc_vehicule:
+  path: /vehicules/num_acc/{num_Acc}
+  controller: App\Controller\VehiculeController::searchByNum_Acc
