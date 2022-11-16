@@ -45,3 +45,7 @@ show_vehicule:
 searchByNum_Acc_vehicule:
   path: /vehicules/num_acc/{num_Acc}
   controller: App\Controller\VehiculeController::searchByNum_Acc
+
+Accident_File_Json:
+  path: /accidents/json/{num_Acc}
+  controller: App\Controller\AccidentController::getAccidentJsonFile
