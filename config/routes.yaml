@@ -49,3 +49,7 @@ searchByNum_Acc_vehicule:
 Accident_File_Json:
   path: /accidents/json/{num_Acc}
   controller: App\Controller\AccidentController::getAccidentJsonFile
+
+Accident_File_Csv:
+  path: /accidents/csv/{num_Acc}
+  controller: App\Controller\AccidentController::getAccidentCsvFile
