@@ -26,6 +26,10 @@ lieux_list:
   path: /lieux
   controller: App\Controller\LieuxController::list
 
+uploadCsvFile:
+  path: /vehicules/new
+  controller: App\Controller\VehiculeController::new
+
 show_lieux:
   path: /lieux/{id}
   controller: App\Controller\LieuxController::show

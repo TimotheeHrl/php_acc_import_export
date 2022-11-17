@@ -8,4 +8,5 @@ data/*
 /public/bundles/
 /var/
 /vendor/
+/uploads/*
 ###< symfony/framework-bundle ###
