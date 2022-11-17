@@ -114,4 +114,54 @@ class VehiculeController extends AbstractController
             }
         }
     }
+    /**
+     * @Route("/api/vehicules/paginated/{row_index}", name="getPaginatedReccords", methods={"POST","HEAD"})
+     */
+    public function getPaginatedReccords(VehiculeRepository $vehiculeRepository, int $row_index): JsonResponse
+    {
+        $data = $vehiculeRepository->getPaginatedRecords($row_index);
+        return $this->json($data);
+    }
+    /**
+     * @Route("/api/vehicules/paginated_csv/{row_index}", name="getPaginatedReccordsCsv", methods={"POST","HEAD"})
+     */
+    public function getPaginatedReccordsCsv(vehiculeRepository $vehiculeRepository, int $row_index): Response
+    {
+        $encoders = [new CsvEncoder()];
+        $normalizers = [new ObjectNormalizer()];
+        $serializer = new Serializer($normalizers, $encoders);
+
+        $data = $vehiculeRepository->getPaginatedRecords($row_index);
+
+        $fileContent = $serializer->serialize($data, 'csv'); // the generated file content
+
+
+        $response = new Response($fileContent);
+
+        $disposition = HeaderUtils::makeDisposition(
+            HeaderUtils::DISPOSITION_ATTACHMENT,
+            'vehicules.csv'
+        );
+        $response->headers->set('Content-Disposition', $disposition);
+        return $response;
+    }
+    /**
+     * @Route("/api/vehicules/paginated_json/{row_index}", name="getPaginatedReccordsJson", methods={"POST","HEAD"})
+     */
+    public function getPaginatedReccordsJson(VehiculeRepository $vehiculeRepository, int $row_index): Response
+    {
+
+
+        $data = $vehiculeRepository->getPaginatedRecords($row_index);
+
+        $fileContent = $this->json($data); // the generated file content
+        $response = new Response($fileContent);
+
+        $disposition = HeaderUtils::makeDisposition(
+            HeaderUtils::DISPOSITION_ATTACHMENT,
+            'vehicules.json'
+        );
+        $response->headers->set('Content-Disposition', $disposition);
+        return $response;
+    }
 }

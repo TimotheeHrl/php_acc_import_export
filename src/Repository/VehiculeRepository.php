@@ -71,6 +71,31 @@ class VehiculeRepository extends ServiceEntityRepository
         }
         return $vehicules;
     }
+    /**
+     * @return Vehicule[] Returns an array of Lieux objects
+     */
+    public function getPaginatedRecords($row_index): array
+    {
+        $entityManager = $this->getEntityManager();
+        $entityManager->getConnection()->getConfiguration()->setSQLLogger(null);
+        $entityManager->getConnection()->beginTransaction();
+        try {
+            $query = $entityManager->createQuery(
+                'SELECT v
+                FROM App\Entity\Vehicule v
+                WHERE v.id > :row_index
+                ORDER BY v.id ASC'
+            )->setParameter('row_index', $row_index)
+                ->setMaxResults(100);
+            $vehicules = $query->getResult();
+            $entityManager->getConnection()->commit();
+        } catch (\Exception $e) {
+            $entityManager->getConnection()->rollBack();
+            throw $e;
+        }
+        return $vehicules;
+    }
+
 
     //    /**
     //     * @return Vehicule[] Returns an array of Vehicule objects

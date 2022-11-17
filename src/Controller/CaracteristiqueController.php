@@ -84,9 +84,7 @@ class CaracteristiqueController extends AbstractController
      */
     public function getPaginatedReccordsJson(CaracteristiqueRepository $caracteristiqueRepository, Request $request, int $row_index): Response
     {
-        $encoders = [new CsvEncoder()];
-        $normalizers = [new ObjectNormalizer()];
-        $serializer = new Serializer($normalizers, $encoders);
+
 
         $data = $caracteristiqueRepository->getPaginatedRecords($row_index);
 

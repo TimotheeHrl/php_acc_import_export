@@ -146,9 +146,6 @@ class UsagerController extends AbstractController
      */
     public function getPaginatedReccordsJson(UsagersRepository $usagersRepository, Request $request, int $row_index): Response
     {
-        $encoders = [new CsvEncoder()];
-        $normalizers = [new ObjectNormalizer()];
-        $serializer = new Serializer($normalizers, $encoders);
 
         $data = $usagersRepository->getPaginatedRecords($row_index);
 

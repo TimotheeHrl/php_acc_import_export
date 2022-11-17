@@ -92,10 +92,20 @@ getPaginatedReccordsLieuxJson:
 
 getPaginatedReccordsUsagers:
   path: /usagers/paginated/{row_index}
-  controller: App\Controller\UsagersController::getPaginatedReccords
+  controller: App\Controller\UsagerController::getPaginatedReccords
 getPaginatedReccordsUsagersCsv:
   path: /usagers/paginated_csv/{row_index}
-  controller: App\Controller\UsagersController::getPaginatedReccordsCsv
+  controller: App\Controller\UsagerController::getPaginatedReccordsCsv
 getPaginatedReccordsUsagersJson:
   path: /usagers/paginated_json/{row_index}
-  controller: App\Controller\UsagersController::getPaginatedReccordsJson
+  controller: App\Controller\UsagerController::getPaginatedReccordsJson
+
+getPaginatedReccordsVehicules:
+  path: /vehicules/paginated/{row_index}
+  controller: App\Controller\VehiculeController::getPaginatedReccords
+getPaginatedReccordsVehiculesCsv:
+  path: /vehicules/paginated_csv/{row_index}
+  controller: App\Controller\VehiculeController::getPaginatedReccordsCsv
+getPaginatedReccordsVehiculesJson:
+  path: /vehicules/paginated_json/{row_index}
+  controller: App\Controller\VehiculeController::getPaginatedReccordsJson

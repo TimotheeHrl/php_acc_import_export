@@ -143,9 +143,6 @@ class LieuxController extends AbstractController
      */
     public function getPaginatedReccordsJson(LieuxRepository $lieuxRepository, Request $request, int $row_index): Response
     {
-        $encoders = [new CsvEncoder()];
-        $normalizers = [new ObjectNormalizer()];
-        $serializer = new Serializer($normalizers, $encoders);
 
         $data = $lieuxRepository->getPaginatedRecords($row_index);
 
