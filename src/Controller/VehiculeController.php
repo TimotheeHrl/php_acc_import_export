@@ -59,24 +59,31 @@ class VehiculeController extends AbstractController
             $uploadedFile = $request->files->get('veh');
             $destination = $this->getParameter('kernel.project_dir') . '/public/uploads';
             $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+
             // this is needed to safely include the file name as part of the URL
             $safeFilename = $slugger->slug($originalFilename);
+
             $newFilename = $safeFilename . '-' . uniqid() . '.csv';
             $uploadedFile->move($destination, $newFilename);
-            $fileData = fopen($destination . '/' . $newFilename, 'r');
-            // csv parser in php
-            $i = 0;
-            $aa = [];
-            while (($column = fgetcsv($fileData, 10000, ";")) !== FALSE) {
-                if ($i > 0) {
 
-                    $aa = $column[0];
-                }
+            $fileData = fopen($destination . '/' . $newFilename, 'r', true);
+            // parse csv 
+
+
+            $i = 0;
+            // count lines in csv file
+            while (!feof($fileData)) {
+                $line = fgetcsv($fileData, 0, ';');
+                dd($line);
                 $i++;
             }
 
-            dd($aa);
-            return new Response("aa", 200);
+            fclose($fileData);
+
+
+
+
+            return new Response("ss", 200);
         }
     }
 }
