@@ -51,6 +51,27 @@ class VehiculeRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * @return Vehicule[] Returns an array of Caracteristique objects
+     */
+    public function insertVehicules($vehicules): array
+    {
+        $entityManager = $this->getEntityManager();
+        $entityManager->getConnection()->getConfiguration()->setSQLLogger(null);
+        $entityManager->getConnection()->beginTransaction();
+        try {
+            foreach ($vehicules as $vehicule) {
+                $entityManager->persist($vehicule);
+            }
+            $entityManager->flush();
+            $entityManager->getConnection()->commit();
+        } catch (\Exception $e) {
+            $entityManager->getConnection()->rollBack();
+            throw $e;
+        }
+        return $vehicules;
+    }
+
     //    /**
     //     * @return Vehicule[] Returns an array of Vehicule objects
     //     */

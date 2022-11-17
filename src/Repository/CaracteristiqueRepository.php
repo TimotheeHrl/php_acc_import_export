@@ -49,7 +49,75 @@ class CaracteristiqueRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+    /**
+     * @return Caracteristique[] Returns an array of Caracteristique objects
+     */
+    public function insertCaracteristiques($caracteristiques): array
+    {
+        $entityManager = $this->getEntityManager();
+        $entityManager->getConnection()->getConfiguration()->setSQLLogger(null);
+        $entityManager->getConnection()->beginTransaction();
+        try {
+            foreach ($caracteristiques as $caracteristique) {
+                $entityManager->persist($caracteristique);
+            }
+            $entityManager->flush();
+            $entityManager->getConnection()->commit();
+        } catch (\Exception $e) {
+            $entityManager->getConnection()->rollBack();
+            throw $e;
+        }
+        return $caracteristiques;
+    }
 
+    /**
+     * @return Caracteristique[] Returns an array of Caracteristique objects
+     */
+    public function getPaginatedRecords($row_index): array
+    {
+        $entityManager = $this->getEntityManager();
+        $entityManager->getConnection()->getConfiguration()->setSQLLogger(null);
+        $entityManager->getConnection()->beginTransaction();
+        try {
+            $query = $entityManager->createQuery(
+                'SELECT c
+                FROM App\Entity\Caracteristique c
+                WHERE c.id > :row_index
+                ORDER BY c.id ASC'
+            )->setParameter('row_index', $row_index)
+                ->setMaxResults(50);
+            $caracteristiques = $query->getResult();
+            $entityManager->getConnection()->commit();
+        } catch (\Exception $e) {
+            $entityManager->getConnection()->rollBack();
+            throw $e;
+        }
+        return $caracteristiques;
+    }
+    /**
+     * @return Caracteristique[] Returns an array of Caracteristique objects
+     */
+    public function getPaginatedRecordsCsv($row_index): array
+    {
+        $entityManager = $this->getEntityManager();
+        $entityManager->getConnection()->getConfiguration()->setSQLLogger(null);
+        $entityManager->getConnection()->beginTransaction();
+        try {
+            $query = $entityManager->createQuery(
+                'SELECT c
+                FROM App\Entity\Caracteristique c
+                WHERE c.id > :row_index
+                ORDER BY c.id ASC'
+            )->setParameter('row_index', $row_index)
+                ->setMaxResults(100);
+            $caracteristiques = $query->getResult();
+            $entityManager->getConnection()->commit();
+        } catch (\Exception $e) {
+            $entityManager->getConnection()->rollBack();
+            throw $e;
+        }
+        return $caracteristiques;
+    }
 
     //    /**
     //     * @return Caracteristique[] Returns an array of Caracteristique objects

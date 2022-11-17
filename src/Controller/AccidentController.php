@@ -3,19 +3,14 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Repository\AccidentRepository;
 use App\Repository\CaracteristiqueRepository;
 use App\Repository\LieuxRepository;
 use App\Repository\UsagersRepository;
 use App\Repository\VehiculeRepository;
-use App\Entity\Caracteristique;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Serializer\Encoder\CsvEncoder;
-use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
@@ -54,7 +49,7 @@ class AccidentController extends AbstractController
     }
 
     /**
-     * @Route("/accident/{num_Acc}", name="Accident_File_Csv")
+     * @Route("/accident/", name="Accident_File_Csv")
      */
     public function getAccidentCsvFile(
         CaracteristiqueRepository $caracteristiqueRepository,

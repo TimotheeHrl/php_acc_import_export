@@ -51,7 +51,51 @@ class UsagersRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * @return Usagers[] Returns an array of Caracteristique objects
+     */
+    public function insertUsagers($usagers): array
+    {
+        $entityManager = $this->getEntityManager();
+        $entityManager->getConnection()->getConfiguration()->setSQLLogger(null);
+        $entityManager->getConnection()->beginTransaction();
+        try {
+            foreach ($usagers as $usager) {
+                $entityManager->persist($usager);
+            }
+            $entityManager->flush();
+            $entityManager->getConnection()->commit();
+        } catch (\Exception $e) {
+            $entityManager->getConnection()->rollBack();
+            throw $e;
+        }
+        return $usagers;
+    }
 
+    /**
+     * @return Usagers[] Returns an array of Lieux objects
+     */
+    public function getPaginatedRecords($row_index): array
+    {
+        $entityManager = $this->getEntityManager();
+        $entityManager->getConnection()->getConfiguration()->setSQLLogger(null);
+        $entityManager->getConnection()->beginTransaction();
+        try {
+            $query = $entityManager->createQuery(
+                'SELECT u
+                FROM App\Entity\Usagers u
+                WHERE u.id > :row_index
+                ORDER BY u.id ASC'
+            )->setParameter('row_index', $row_index)
+                ->setMaxResults(100);
+            $usagers = $query->getResult();
+            $entityManager->getConnection()->commit();
+        } catch (\Exception $e) {
+            $entityManager->getConnection()->rollBack();
+            throw $e;
+        }
+        return $usagers;
+    }
     //    /**
     //     * @return Usagers[] Returns an array of Usagers objects
     //     */

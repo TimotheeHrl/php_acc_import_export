@@ -49,6 +49,56 @@ class LieuxRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+    /**
+     * @return Lieux[] Returns an array of Caracteristique objects
+     */
+    public function insertLieux($lieux): array
+    { {
+            $entityManager = $this->getEntityManager();
+            $entityManager->getConnection()->getConfiguration()->setSQLLogger(null);
+            $entityManager->getConnection()->beginTransaction();
+            try {
+                foreach ($lieux as $lieu) {
+                    $entityManager->persist($lieu);
+                }
+                $entityManager->flush();
+                $entityManager->getConnection()->commit();
+            } catch (\Exception $e) {
+                $entityManager->getConnection()->rollBack();
+                throw $e;
+            }
+            return $lieux;
+        }
+    }
+
+
+
+    /**
+     * @return Lieux[] Returns an array of Lieux objects
+     */
+    public function getPaginatedRecords($row_index): array
+    {
+        $entityManager = $this->getEntityManager();
+        $entityManager->getConnection()->getConfiguration()->setSQLLogger(null);
+        $entityManager->getConnection()->beginTransaction();
+        try {
+            $query = $entityManager->createQuery(
+                'SELECT l
+                FROM App\Entity\Lieux l
+                WHERE l.id > :row_index
+                ORDER BY l.id ASC'
+            )->setParameter('row_index', $row_index)
+                ->setMaxResults(100);
+            $lieux = $query->getResult();
+            $entityManager->getConnection()->commit();
+        } catch (\Exception $e) {
+            $entityManager->getConnection()->rollBack();
+            throw $e;
+        }
+        return $lieux;
+    }
+
+
     //    /**
     //     * @return Lieux[] Returns an array of Lieux objects
     //     */

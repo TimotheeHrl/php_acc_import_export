@@ -2,17 +2,20 @@
 
 namespace App\Controller;
 
-use App\Form\VehiculeType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\VehiculeRepository;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use App\Entity\Vehicule;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Serializer\Encoder\CsvEncoder;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\HeaderUtils;
 
 class VehiculeController extends AbstractController
 {
@@ -42,48 +45,73 @@ class VehiculeController extends AbstractController
     public function searchByNum_Acc(VehiculeRepository $vehiculeRepository, string $num_Acc): JsonResponse
     {
         $data = $vehiculeRepository->findByNum_Acc($num_Acc);
+
         return $this->json($data);
     }
 
 
-    // method post that parse csv file and insert data into database&
     /**
-     * @Route("/api/vehicule/{num_Acc}", name="searchByNum_Acc_vehicule", methods={"GET","HEAD"})
+     * @Route("/api/vehicule/{num_Acc}", name="new_vehicules", methods={"POST","HEAD"})
      */
-    public function new(Request $request, SluggerInterface $slugger): Response
+    public function new(Request $request, SluggerInterface $slugger, VehiculeRepository $vehiculeRepository): JsonResponse
     {
-        if (!$request->files->get('veh')) {
-            return new Response('No file uploaded', 400);
+        if (!$request->files->get('vehicules')) {
+            return new JsonResponse('To big!', 400);
         } else {
             /** @var UploadedFile $uploadedFile */
-            $uploadedFile = $request->files->get('veh');
-            $destination = $this->getParameter('kernel.project_dir') . '/public/uploads';
-            $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $uploadedFile = $request->files->get('vehicules');
+            $fileSize = $uploadedFile->getSize();
+            if ($fileSize > 10000000) {
+                return $this->json(['error' => 'File size too large']);
+            } else {
+                $destination = $this->getParameter('kernel.project_dir') . '/public/uploads';
+                $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
 
-            // this is needed to safely include the file name as part of the URL
-            $safeFilename = $slugger->slug($originalFilename);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                // get file size
+                $newFilename = $safeFilename . '-' . uniqid() . '.csv';
+                $uploadedFile->move($destination, $newFilename);
 
-            $newFilename = $safeFilename . '-' . uniqid() . '.csv';
-            $uploadedFile->move($destination, $newFilename);
+                $fileData = fopen($destination . '/' . $newFilename, 'r', true);
+                $vehicules = [];
+                $i = 0;
+                // count lines in csv file
+                while (!feof($fileData)) {
+                    $vehicule = new Vehicule();
 
-            $fileData = fopen($destination . '/' . $newFilename, 'r', true);
-            // parse csv 
+                    $line = fgetcsv($fileData, 0, ';');
+                    $vehicule->setNumAcc($line[0]);
+                    $vehicule->setIdVehicule($line[1]);
+                    $vehicule->setNumVeh($line[2]);
+                    $vehicule->setSenc($line[3]);
+                    $vehicule->setCatv($line[4]);
+                    $vehicule->setObs($line[5]);
+                    $vehicule->setObsm($line[6]);
+                    $vehicule->setChoc($line[7]);
+                    $vehicule->setManv($line[8]);
+                    $vehicule->setMotor($line[9]);
+                    $vehicule->setOccutc($line[10]);
+                    // append vehicule to vehicules array
+                    $vehicules[$i] = $vehicule;
+                    $i++;
+                }
+
+                fclose($fileData);
 
 
-            $i = 0;
-            // count lines in csv file
-            while (!feof($fileData)) {
-                $line = fgetcsv($fileData, 0, ';');
-                dd($line);
-                $i++;
+                $data = $vehiculeRepository->insertVehicules($vehicules);
+                // delete file 
+                if (!unlink($destination . '/' . $newFilename)) {
+                    echo ("$destination/$newFilename . cannot be deleted due to an error");
+                } else {
+                    echo ("$destination/$newFilename. has been deleted");
+                }
+
+
+
+                return $this->json($data);
             }
-
-            fclose($fileData);
-
-
-
-
-            return new Response("ss", 200);
         }
     }
 }

@@ -11,24 +11,20 @@ searchByNum_Acc_usagers:
   controller: App\Controller\UsagerController::searchByNum_Acc
 
 caracteristique_list:
-  path: /caracterisques
+  path: /caracteristiques
   controller: App\Controller\CaracteristiqueController::list
 
 show_caracterisque:
-  path: /caracterisques/{id}
+  path: /caracteristiques/{id}
   controller: App\Controller\CaracteristiqueController::show
 
 searchByNum_Acc_caracteristiques:
-  path: /caracterisques/num_acc/{num_Acc}
+  path: /caracteristiques/num_acc/{num_Acc}
   controller: App\Controller\CaracteristiqueController::searchByNum_Acc
 
 lieux_list:
   path: /lieux
   controller: App\Controller\LieuxController::list
-
-uploadCsvFile:
-  path: /vehicules/new
-  controller: App\Controller\VehiculeController::new
 
 show_lieux:
   path: /lieux/{id}
@@ -57,3 +53,49 @@ Accident_File_Json:
 Accident_File_Csv:
   path: /accidents/csv/{num_Acc}
   controller: App\Controller\AccidentController::getAccidentCsvFile
+
+uploadCsvFileVehicule:
+  path: /vehicules/new
+  controller: App\Controller\VehiculeController::new
+
+uploadCsvFileUsagers:
+  path: /usagers/new
+  controller: App\Controller\UsagersController::new
+
+uploadCsvFileCaracteristques:
+  path: /caracteristiques/new
+  controller: App\Controller\CaracteristiquesController::new
+
+uploadCsvFileLieux:
+  path: /lieux/new
+  controller: App\Controller\LieuxController::new
+
+getPaginatedReccordsCaracteristiques:
+  path: /caracteristiques/paginated/{row_index}
+  controller: App\Controller\CaracteristiqueController::getPaginatedReccords
+getPaginatedReccordsCaracteristiquesCsv:
+  path: /caracteristiques/paginated_csv/{row_index}
+  controller: App\Controller\CaracteristiqueController::getPaginatedReccordsCsv
+getPaginatedReccordsCaracteristiquesJson:
+  path: /caracteristiques/paginated_json/{row_index}
+  controller: App\Controller\CaracteristiqueController::getPaginatedReccordsJson
+
+getPaginatedReccordsLieux:
+  path: /lieux/paginated/{row_index}
+  controller: App\Controller\LieuxController::getPaginatedReccords
+getPaginatedReccordsLieuxCsv:
+  path: /lieux/paginated_csv/{row_index}
+  controller: App\Controller\LieuxController::getPaginatedReccordsCsv
+getPaginatedReccordsLieuxJson:
+  path: /lieux/paginated_json/{row_index}
+  controller: App\Controller\LieuxController::getPaginatedReccordsJson
+
+getPaginatedReccordsUsagers:
+  path: /usagers/paginated/{row_index}
+  controller: App\Controller\UsagersController::getPaginatedReccords
+getPaginatedReccordsUsagersCsv:
+  path: /usagers/paginated_csv/{row_index}
+  controller: App\Controller\UsagersController::getPaginatedReccordsCsv
+getPaginatedReccordsUsagersJson:
+  path: /usagers/paginated_json/{row_index}
+  controller: App\Controller\UsagersController::getPaginatedReccordsJson
