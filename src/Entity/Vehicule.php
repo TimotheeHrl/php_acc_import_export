@@ -5,8 +5,10 @@ namespace App\Entity;
 use App\Repository\VehiculeRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * @ORM\Entity(repositoryClass=VehiculeRepository::class)
+
  */
 class Vehicule
 {
@@ -18,12 +20,12 @@ class Vehicule
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="bigint")
      */
-    private $num_Acc;
+    private $num_acc;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $id_vehicule;
 
@@ -33,68 +35,70 @@ class Vehicule
     private $num_veh;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $senc;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $catv;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $obs;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $obsm;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $choc;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $manv;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $motor;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $occutc;
+
+
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNumAcc(): ?string
+    public function getNumAcc(): ?int
     {
-        return $this->num_Acc;
+        return $this->num_acc;
     }
 
-    public function setNumAcc(string $num_Acc): self
+    public function setNumAcc(int $num_acc): self
     {
-        $this->num_Acc = $num_Acc;
+        $this->num_acc = $num_acc;
 
         return $this;
     }
 
-    public function getIdVehicule(): ?string
+    public function getIdVehicule(): ?int
     {
         return $this->id_vehicule;
     }
 
-    public function setIdVehicule(string $id_vehicule): self
+    public function setIdVehicule(int $id_vehicule): self
     {
         $this->id_vehicule = $id_vehicule;
 
@@ -113,96 +117,96 @@ class Vehicule
         return $this;
     }
 
-    public function getSenc(): ?string
+    public function getSenc(): ?int
     {
         return $this->senc;
     }
 
-    public function setSenc(string $senc): self
+    public function setSenc(int $senc): self
     {
         $this->senc = $senc;
 
         return $this;
     }
 
-    public function getCatv(): ?string
+    public function getCatv(): ?int
     {
         return $this->catv;
     }
 
-    public function setCatv(string $catv): self
+    public function setCatv(int $catv): self
     {
         $this->catv = $catv;
 
         return $this;
     }
 
-    public function getObs(): ?string
+    public function getObs(): ?int
     {
         return $this->obs;
     }
 
-    public function setObs(string $obs): self
+    public function setObs(int $obs): self
     {
         $this->obs = $obs;
 
         return $this;
     }
 
-    public function getObsm(): ?string
+    public function getObsm(): ?int
     {
         return $this->obsm;
     }
 
-    public function setObsm(string $obsm): self
+    public function setObsm(int $obsm): self
     {
         $this->obsm = $obsm;
 
         return $this;
     }
 
-    public function getChoc(): ?string
+    public function getChoc(): ?int
     {
         return $this->choc;
     }
 
-    public function setChoc(string $choc): self
+    public function setChoc(int $choc): self
     {
         $this->choc = $choc;
 
         return $this;
     }
 
-    public function getManv(): ?string
+    public function getManv(): ?int
     {
         return $this->manv;
     }
 
-    public function setManv(string $manv): self
+    public function setManv(int $manv): self
     {
         $this->manv = $manv;
 
         return $this;
     }
 
-    public function getMotor(): ?string
+    public function getMotor(): ?int
     {
         return $this->motor;
     }
 
-    public function setMotor(string $motor): self
+    public function setMotor(int $motor): self
     {
         $this->motor = $motor;
 
         return $this;
     }
 
-    public function getOccutc(): ?string
+    public function getOccutc(): ?int
     {
         return $this->occutc;
     }
 
-    public function setOccutc(string $occutc): self
+    public function setOccutc(?int $occutc): self
     {
         $this->occutc = $occutc;
 

@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Usagers;
+use App\Entity\Usager;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Usagers>
+ * @extends ServiceEntityRepository<Usager>
  *
- * @method Usagers|null find($id, $lockMode = null, $lockVersion = null)
- * @method Usagers|null findOneBy(array $criteria, array $orderBy = null)
- * @method Usagers[]    findAll()
- * @method Usagers[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Usager|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Usager|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Usager[]    findAll()
+ * @method Usager[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class UsagersRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Usagers::class);
+        parent::__construct($registry, Usager::class);
     }
 
-    public function add(Usagers $entity, bool $flush = false): void
+    public function add(Usager $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class UsagersRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Usagers $entity, bool $flush = false): void
+    public function remove(Usager $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class UsagersRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Usagers[] Returns an array of Caracteristique objects
+     * @return Usager[] Returns an array of Caracteristique objects
      */
     public function findByNum_Acc(string $num_Acc): array
     {
@@ -52,7 +52,7 @@ class UsagersRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Usagers[] Returns an array of Caracteristique objects
+     * @return Usager[] Returns an array of Caracteristique objects
      */
     public function insertUsagers($usagers): array
     {
@@ -73,7 +73,7 @@ class UsagersRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Usagers[] Returns an array of Lieux objects
+     * @return Usager[] Returns an array of Lieux objects
      */
     public function getPaginatedRecords($row_index): array
     {
@@ -83,7 +83,7 @@ class UsagersRepository extends ServiceEntityRepository
         try {
             $query = $entityManager->createQuery(
                 'SELECT u
-                FROM App\Entity\Usagers u
+                FROM App\Entity\Usager u
                 WHERE u.id > :row_index
                 ORDER BY u.id ASC'
             )->setParameter('row_index', $row_index)
@@ -96,28 +96,4 @@ class UsagersRepository extends ServiceEntityRepository
         }
         return $usagers;
     }
-    //    /**
-    //     * @return Usagers[] Returns an array of Usagers objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('u')
-    //            ->andWhere('u.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('u.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Usagers
-    //    {
-    //        return $this->createQueryBuilder('u')
-    //            ->andWhere('u.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
 }

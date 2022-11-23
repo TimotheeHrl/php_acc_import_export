@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\UsagersRepository;
 use Symfony\Component\String\Slugger\SluggerInterface;
-use App\Entity\Usagers;
+use App\Entity\Usager;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\Encoder\CsvEncoder;
@@ -72,7 +72,7 @@ class UsagerController extends AbstractController
                 $usagers = [];
                 $i = 0;
                 while (!feof($fileData)) {
-                    $usager = new Usagers();
+                    $usager = new Usager();
 
                     $line = fgetcsv($fileData, 0, ';');
 

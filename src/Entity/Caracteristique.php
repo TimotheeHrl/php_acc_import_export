@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\CaracteristiqueRepository;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=CaracteristiqueRepository::class)
+
  */
 class Caracteristique
 {
@@ -18,127 +19,127 @@ class Caracteristique
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="bigint")
      */
-    private $num_Acc;
+    private $num_acc;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $jour;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $mois;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $an;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $hrmn;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $lum;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $dep;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $com;
-
-    /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $agg;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $inte;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $atm;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $col;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $adr;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $lat;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $longi;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $com;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNumAcc(): ?string
+    public function getNumAcc(): ?int
     {
-        return $this->num_Acc;
+        return $this->num_acc;
     }
 
-    public function setNumAcc(string $num_Acc): self
+    public function setNumAcc(int $num_acc): self
     {
-        $this->num_Acc = $num_Acc;
+        $this->num_acc = $num_acc;
 
         return $this;
     }
 
-    public function getJour(): ?string
+    public function getJour(): ?int
     {
         return $this->jour;
     }
 
-    public function setJour(string $jour): self
+    public function setJour(?int $jour): self
     {
         $this->jour = $jour;
 
         return $this;
     }
 
-    public function getMois(): ?string
+    public function getMois(): ?int
     {
         return $this->mois;
     }
 
-    public function setMois(string $mois): self
+    public function setMois(int $mois): self
     {
         $this->mois = $mois;
 
         return $this;
     }
 
-    public function getAn(): ?string
+    public function getAn(): ?int
     {
         return $this->an;
     }
 
-    public function setAn(string $an): self
+    public function setAn(int $an): self
     {
         $this->an = $an;
 
@@ -150,91 +151,79 @@ class Caracteristique
         return $this->hrmn;
     }
 
-    public function setHrmn(string $hrmn): self
+    public function setHrmn(?string $hrmn): self
     {
         $this->hrmn = $hrmn;
 
         return $this;
     }
 
-    public function getLum(): ?string
+    public function getLum(): ?int
     {
         return $this->lum;
     }
 
-    public function setLum(string $lum): self
+    public function setLum(?int $lum): self
     {
         $this->lum = $lum;
 
         return $this;
     }
 
-    public function getDep(): ?string
+    public function getDep(): ?int
     {
         return $this->dep;
     }
 
-    public function setDep(string $dep): self
+    public function setDep(int $dep): self
     {
         $this->dep = $dep;
 
         return $this;
     }
 
-    public function getCom(): ?string
-    {
-        return $this->com;
-    }
-
-    public function setCom(string $com): self
-    {
-        $this->com = $com;
-
-        return $this;
-    }
-
-    public function getAgg(): ?string
+    public function getAgg(): ?int
     {
         return $this->agg;
     }
 
-    public function setAgg(string $agg): self
+    public function setAgg(int $agg): self
     {
         $this->agg = $agg;
 
         return $this;
     }
 
-    public function getInte(): ?string
+    public function getInte(): ?int
     {
         return $this->inte;
     }
 
-    public function setInte(string $inte): self
+    public function setInte(int $inte): self
     {
         $this->inte = $inte;
 
         return $this;
     }
 
-    public function getAtm(): ?string
+    public function getAtm(): ?int
     {
         return $this->atm;
     }
 
-    public function setAtm(string $atm): self
+    public function setAtm(int $atm): self
     {
         $this->atm = $atm;
 
         return $this;
     }
 
-    public function getCol(): ?string
+    public function getCol(): ?int
     {
         return $this->col;
     }
 
-    public function setCol(string $col): self
+    public function setCol(?int $col): self
     {
         $this->col = $col;
 
@@ -246,33 +235,45 @@ class Caracteristique
         return $this->adr;
     }
 
-    public function setAdr(string $adr): self
+    public function setAdr(?string $adr): self
     {
         $this->adr = $adr;
 
         return $this;
     }
 
-    public function getLat(): ?string
+    public function getLat(): ?int
     {
         return $this->lat;
     }
 
-    public function setLat(string $lat): self
+    public function setLat(?int $lat): self
     {
         $this->lat = $lat;
 
         return $this;
     }
 
-    public function getLongi(): ?string
+    public function getLongi(): ?int
     {
         return $this->longi;
     }
 
-    public function setLongi(string $longi): self
+    public function setLongi(?int $longi): self
     {
         $this->longi = $longi;
+
+        return $this;
+    }
+
+    public function getCom(): ?int
+    {
+        return $this->com;
+    }
+
+    public function setCom(?int $com): self
+    {
+        $this->com = $com;
 
         return $this;
     }

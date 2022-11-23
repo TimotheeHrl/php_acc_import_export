@@ -5,8 +5,10 @@ namespace App\Entity;
 use App\Repository\LieuxRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * @ORM\Entity(repositoryClass=LieuxRepository::class)
+
  */
 class Lieux
 {
@@ -18,23 +20,22 @@ class Lieux
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="bigint")
      */
-    private $num_Acc;
+    private $num_acc;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $catr;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", nullable=true)
      */
     private $voie;
 
-
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $v1;
 
@@ -44,67 +45,66 @@ class Lieux
     private $v2;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", length=255)
      */
     private $circ;
-
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $nbv;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $vosp;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $prof;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $pr;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $pr1;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $plan;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $lartpc;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $larrout;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $surf;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $infra;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $situ;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $vma;
 
@@ -115,24 +115,24 @@ class Lieux
         return $this->id;
     }
 
-    public function getNumAcc(): ?string
+    public function getNumAcc(): ?int
     {
-        return $this->num_Acc;
+        return $this->num_acc;
     }
 
-    public function setNumAcc(string $num_Acc): self
+    public function setNumAcc(int $num_acc): self
     {
-        $this->num_Acc = $num_Acc;
+        $this->num_acc = $num_acc;
 
         return $this;
     }
 
-    public function getCatr(): ?string
+    public function getCatr(): ?int
     {
         return $this->catr;
     }
 
-    public function setCatr(string $catr): self
+    public function setCatr(int $catr): self
     {
         $this->catr = $catr;
 
@@ -144,19 +144,19 @@ class Lieux
         return $this->voie;
     }
 
-    public function setVoie(string $voie): self
+    public function setVoie(?string $voie): self
     {
         $this->voie = $voie;
 
         return $this;
     }
 
-    public function getV1(): ?string
+    public function getV1(): ?int
     {
         return $this->v1;
     }
 
-    public function setV1(string $v1): self
+    public function setV1(int $v1): self
     {
         $this->v1 = $v1;
 
@@ -174,157 +174,155 @@ class Lieux
 
         return $this;
     }
-
-    public function getCirc(): ?string
+    public function getCirc(): ?int
     {
         return $this->circ;
     }
 
-    public function setCirc(string $circ): self
+    public function setCirc(int $circ): self
     {
         $this->circ = $circ;
 
         return $this;
     }
-
-    public function getNbv(): ?string
+    public function getNbv(): ?int
     {
         return $this->nbv;
     }
 
-    public function setNbv(string $nbv): self
+    public function setNbv(?int $nbv): self
     {
         $this->nbv = $nbv;
 
         return $this;
     }
 
-    public function getVosp(): ?string
+    public function getVosp(): ?int
     {
         return $this->vosp;
     }
 
-    public function setVosp(string $vosp): self
+    public function setVosp(?int $vosp): self
     {
         $this->vosp = $vosp;
 
         return $this;
     }
 
-    public function getProf(): ?string
+    public function getProf(): ?int
     {
         return $this->prof;
     }
 
-    public function setProf(string $prof): self
+    public function setProf(?int $prof): self
     {
         $this->prof = $prof;
 
         return $this;
     }
 
-    public function getPr(): ?string
+    public function getPr(): ?int
     {
         return $this->pr;
     }
 
-    public function setPr(string $pr): self
+    public function setPr(?int $pr): self
     {
         $this->pr = $pr;
 
         return $this;
     }
 
-    public function getPr1(): ?string
+    public function getPr1(): ?int
     {
         return $this->pr1;
     }
 
-    public function setPr1(string $pr1): self
+    public function setPr1(?int $pr1): self
     {
         $this->pr1 = $pr1;
 
         return $this;
     }
 
-    public function getPlan(): ?string
+    public function getPlan(): ?int
     {
         return $this->plan;
     }
 
-    public function setPlan(string $plan): self
+    public function setPlan(?int $plan): self
     {
         $this->plan = $plan;
 
         return $this;
     }
 
-    public function getLartpc(): ?string
+    public function getLartpc(): ?int
     {
         return $this->lartpc;
     }
 
-    public function setLartpc(string $lartpc): self
+    public function setLartpc(?int $lartpc): self
     {
         $this->lartpc = $lartpc;
 
         return $this;
     }
 
-    public function getLarrout(): ?string
+    public function getLarrout(): ?int
     {
         return $this->larrout;
     }
 
-    public function setLarrout(string $larrout): self
+    public function setLarrout(?int $larrout): self
     {
         $this->larrout = $larrout;
 
         return $this;
     }
 
-    public function getSurf(): ?string
+    public function getSurf(): ?int
     {
         return $this->surf;
     }
 
-    public function setSurf(string $surf): self
+    public function setSurf(?int $surf): self
     {
         $this->surf = $surf;
 
         return $this;
     }
 
-    public function getInfra(): ?string
+    public function getInfra(): ?int
     {
         return $this->infra;
     }
 
-    public function setInfra(string $infra): self
+    public function setInfra(?int $infra): self
     {
         $this->infra = $infra;
 
         return $this;
     }
 
-    public function getSitu(): ?string
+    public function getSitu(): ?int
     {
         return $this->situ;
     }
 
-    public function setSitu(string $situ): self
+    public function setSitu(?int $situ): self
     {
         $this->situ = $situ;
 
         return $this;
     }
 
-    public function getVma(): ?string
+    public function getVma(): ?int
     {
         return $this->vma;
     }
 
-    public function setVma(string $vma): self
+    public function setVma(?int $vma): self
     {
         $this->vma = $vma;
 
