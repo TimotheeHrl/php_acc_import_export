@@ -1,111 +1,111 @@
 usager_list:
-  path: /usagers
+  path: /api/usagers
   controller: App\Controller\UsagerController::list
 
 show_usager:
-  path: /usagers/{id}
+  path: /api/usagers/{id}
   controller: App\Controller\UsagerController::show
 
 searchByNum_Acc_usagers:
-  path: /usagers/num_acc/{num_Acc}
+  path: /api/usagers/num_acc/{num_Acc}
   controller: App\Controller\UsagerController::searchByNum_Acc
 
 caracteristique_list:
-  path: /caracteristiques
+  path: /api/caracteristiques
   controller: App\Controller\CaracteristiqueController::list
 
 show_caracterisque:
-  path: /caracteristiques/{id}
+  path: /api/caracteristiques/{id}
   controller: App\Controller\CaracteristiqueController::show
 
 searchByNum_Acc_caracteristiques:
-  path: /caracteristiques/num_acc/{num_Acc}
+  path: /api/caracteristiques/num_acc/{num_Acc}
   controller: App\Controller\CaracteristiqueController::searchByNum_Acc
 
 lieux_list:
-  path: /lieux
+  path: /api/lieux
   controller: App\Controller\LieuxController::list
 
 show_lieux:
-  path: /lieux/{id}
+  path: /api/lieux/{id}
   controller: App\Controller\LieuxController::show
 
 searchByNum_Acc_lieux:
-  path: /lieux/num_acc/{num_Acc}
+  path: /api/lieux/num_acc/{num_Acc}
   controller: App\Controller\LieuxController::searchByNum_Acc
 
 vehicule_list:
-  path: /vehicules
+  path: /api/vehicules
   controller: App\Controller\VehiculeController::list
 
 show_vehicule:
-  path: /vehicules/{id}
+  path: /api/vehicules/{id}
   controller: App\Controller\VehiculeController::show
 
 searchByNum_Acc_vehicule:
-  path: /vehicules/num_acc/{num_Acc}
+  path: /api/vehicules/num_acc/{num_Acc}
   controller: App\Controller\VehiculeController::searchByNum_Acc
 
 Accident_File_Json:
-  path: /accidents/json/{num_Acc}
+  path: /api/accidents/json/{num_Acc}
   controller: App\Controller\AccidentController::getAccidentJsonFile
 
 Accident_File_Csv:
-  path: /accidents/csv/{num_Acc}
+  path: /api/accidents/csv/{num_Acc}
   controller: App\Controller\AccidentController::getAccidentCsvFile
 
 uploadCsvFileVehicule:
-  path: /vehicules/new
+  path: /api/vehicules/new
   controller: App\Controller\VehiculeController::new
 
 uploadCsvFileUsagers:
-  path: /usagers/new
+  path: /api/usagers/new
   controller: App\Controller\UsagersController::new
 
 uploadCsvFileCaracteristques:
-  path: /caracteristiques/new
+  path: /api/caracteristiques/new
   controller: App\Controller\CaracteristiquesController::new
 
 uploadCsvFileLieux:
-  path: /lieux/new
+  path: /api/lieux/new
   controller: App\Controller\LieuxController::new
 
 getPaginatedReccordsCaracteristiques:
-  path: /caracteristiques/paginated/{row_index}
+  path: /api/caracteristiques/paginated/{row_index}
   controller: App\Controller\CaracteristiqueController::getPaginatedReccords
 getPaginatedReccordsCaracteristiquesCsv:
-  path: /caracteristiques/paginated_csv/{row_index}
+  path: /api/caracteristiques/paginated_csv/{row_index}
   controller: App\Controller\CaracteristiqueController::getPaginatedReccordsCsv
 getPaginatedReccordsCaracteristiquesJson:
-  path: /caracteristiques/paginated_json/{row_index}
+  path: /api/caracteristiques/paginated_json/{row_index}
   controller: App\Controller\CaracteristiqueController::getPaginatedReccordsJson
 
 getPaginatedReccordsLieux:
-  path: /lieux/paginated/{row_index}
+  path: /api/lieux/paginated/{row_index}
   controller: App\Controller\LieuxController::getPaginatedReccords
 getPaginatedReccordsLieuxCsv:
-  path: /lieux/paginated_csv/{row_index}
+  path: /api/lieux/paginated_csv/{row_index}
   controller: App\Controller\LieuxController::getPaginatedReccordsCsv
 getPaginatedReccordsLieuxJson:
-  path: /lieux/paginated_json/{row_index}
+  path: /api/lieux/paginated_json/{row_index}
   controller: App\Controller\LieuxController::getPaginatedReccordsJson
 
 getPaginatedReccordsUsagers:
-  path: /usagers/paginated/{row_index}
+  path: /api/usagers/paginated/{row_index}
   controller: App\Controller\UsagerController::getPaginatedReccords
 getPaginatedReccordsUsagersCsv:
-  path: /usagers/paginated_csv/{row_index}
+  path: /api/usagers/paginated_csv/{row_index}
   controller: App\Controller\UsagerController::getPaginatedReccordsCsv
 getPaginatedReccordsUsagersJson:
-  path: /usagers/paginated_json/{row_index}
+  path: /api/usagers/paginated_json/{row_index}
   controller: App\Controller\UsagerController::getPaginatedReccordsJson
 
 getPaginatedReccordsVehicules:
-  path: /vehicules/paginated/{row_index}
+  path: /api/vehicules/paginated/{row_index}
   controller: App\Controller\VehiculeController::getPaginatedReccords
 getPaginatedReccordsVehiculesCsv:
-  path: /vehicules/paginated_csv/{row_index}
+  path: /api/vehicules/paginated_csv/{row_index}
   controller: App\Controller\VehiculeController::getPaginatedReccordsCsv
 getPaginatedReccordsVehiculesJson:
-  path: /vehicules/paginated_json/{row_index}
+  path: /api/vehicules/paginated_json/{row_index}
   controller: App\Controller\VehiculeController::getPaginatedReccordsJson

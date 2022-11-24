@@ -15,13 +15,21 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\HeaderUtils;
+use OpenApi\Annotations as OA;
 
 
 class CaracteristiqueController extends AbstractController
 {
+
     /**
-     * @Route("/usager", name="app_usager")
+     * @OA\Get(path="/api/caracteristiques",
+     * @OA\Response(response="200", 
+     * description="Liste des caracteristiques",
+     * @OA\JsonContent(type="array", description="Liste des caracteristiques", @OA\Items(ref="#/components/schemas/Caracteristique"))
+     * )
+     * )
      */
+
     public function list(CaracteristiqueRepository $caracteristiqueRepository): JsonResponse
     {
         $caracteristiques = $caracteristiqueRepository->findAll();
@@ -30,7 +38,20 @@ class CaracteristiqueController extends AbstractController
     }
 
     /**
-     * @Route("/api/usager/{id}", name="show_usager", methods={"GET","HEAD"})
+     *@OA\Get(path="/api/caracteristiques/{id}",
+     *@OA\Response(response="200",
+     *description="Affiche une caracteristique",
+     *@OA\Parameter(
+     *name="id",
+     *in="path",
+     *description="Identifiant de la caracteristique",
+     *required=true,
+     *@OA\Schema(type="integer")
+     *),
+     *@OA\JsonContent(type="array", description="Affiche une caracteristique", @OA\Items(ref="#/components/schemas/Caracteristique"))
+     *),
+     *@OA\Response(response="404", description="Caracteristique non trouvée")
+     *)
      */
     public function show(CaracteristiqueRepository $caracteristiqueRepository, int $id): JsonResponse
     {

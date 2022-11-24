@@ -1,0 +1,123 @@
+{
+    "openapi": "3.0.0",
+    "paths": {
+        "/api/caracteristiques": {
+            "get": {
+                "operationId": "5728a9cf244bcce91bd269fcba11245d",
+                "responses": {
+                    "200": {
+                        "description": "Liste des caracteristiques",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Liste des caracteristiques",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Caracteristique"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/caracteristiques/{id}": {
+            "get": {
+                "operationId": "6f566a0a11734dde0a0197730618a3d7",
+                "responses": {
+                    "200": {
+                        "description": "Affiche une caracteristique",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Affiche une caracteristique",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Caracteristique"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Caracteristique non trouvée"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Caracteristique": {
+                "properties": {
+                    "id": {
+                        "description": "Identifiant de la caracteristique",
+                        "type": "integer"
+                    },
+                    "num_acc": {
+                        "description": "Numéro d'accident",
+                        "type": "integer"
+                    },
+                    "jour": {
+                        "description": "jour de l'accident",
+                        "type": "integer"
+                    },
+                    "mois": {
+                        "description": "mois de l'accident",
+                        "type": "integer"
+                    },
+                    "an": {
+                        "description": "année de l'accident",
+                        "type": "integer"
+                    },
+                    "hrmn": {
+                        "description": "heure de l'accident",
+                        "type": "string"
+                    },
+                    "lum": {
+                        "description": "lumière au moment de l'accident",
+                        "type": "integer"
+                    },
+                    "dep": {
+                        "description": "departement de l'accident",
+                        "type": "integer"
+                    },
+                    "agg": {
+                        "description": "localisation: agglo / hors-agglo",
+                        "type": "integer"
+                    },
+                    "inte": {
+                        "description": "type d'intersection",
+                        "type": "integer"
+                    },
+                    "atm": {
+                        "description": "condition météo",
+                        "type": "integer"
+                    },
+                    "col": {
+                        "description": "type de collision",
+                        "type": "integer"
+                    },
+                    "adr": {
+                        "description": "adresse postal de l'accident",
+                        "type": "string"
+                    },
+                    "lat": {
+                        "description": "latitude de l'accident",
+                        "type": "integer"
+                    },
+                    "longi": {
+                        "description": "longitude de l'accident",
+                        "type": "integer"
+                    },
+                    "com": {
+                        "description": "commune de l'accident",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}

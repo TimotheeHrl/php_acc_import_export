@@ -2,16 +2,20 @@
 
 namespace App\Entity;
 
+use OpenApi\Annotations as OA;
+
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @OA\Schema()
  * @ORM\Entity(repositoryClass=CaracteristiqueRepository::class)
 
  */
 class Caracteristique
 {
     /**
+     * @OA\Property(type="integer", description="Identifiant de la caracteristique")
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -19,76 +23,91 @@ class Caracteristique
     private $id;
 
     /**
+     * @OA\Property(type="integer", description="Numéro d'accident")
      * @ORM\Column(type="bigint")
      */
     private $num_acc;
 
     /**
+     * @OA\Property(type="integer", description="jour de l'accident")
      * @ORM\Column(type="integer", nullable=true)
      */
     private $jour;
 
     /**
+     * @OA\Property(type="integer", description="mois de l'accident")
      * @ORM\Column(type="integer")
      */
     private $mois;
 
     /**
+     * @OA\Property(type="integer", description="année de l'accident")
      * @ORM\Column(type="integer")
      */
     private $an;
 
     /**
+     * @OA\Property(type="string", description="heure de l'accident")
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $hrmn;
 
     /**
+     * @OA\Property(type="integer", description="lumière au moment de l'accident")
      * @ORM\Column(type="integer", nullable=true)
      */
     private $lum;
 
     /**
+     * @OA\Property(type="integer", description="departement de l'accident")
      * @ORM\Column(type="integer")
      */
     private $dep;
 
     /**
+     * @OA\Property(type="integer", description="localisation: agglo / hors-agglo")
      * @ORM\Column(type="integer")
      */
     private $agg;
 
     /**
+     * @OA\Property(type="integer", description="type d'intersection")
      * @ORM\Column(type="integer")
      */
     private $inte;
 
     /**
+     * @OA\Property(type="integer", description="condition météo")
      * @ORM\Column(type="integer")
      */
     private $atm;
 
     /**
+     * @OA\Property(type="integer", description="type de collision")
      * @ORM\Column(type="integer", nullable=true)
      */
     private $col;
 
     /**
+     * @OA\Property(type="string", description="adresse postal de l'accident")
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $adr;
 
     /**
+     * @OA\Property(type="integer", description="latitude de l'accident")
      * @ORM\Column(type="integer", nullable=true)
      */
     private $lat;
 
     /**
+     * @OA\Property(type="integer", description="longitude de l'accident")
      * @ORM\Column(type="integer", nullable=true)
      */
     private $longi;
 
     /**
+     * @OA\Property(type="integer", description="commune de l'accident")
      * @ORM\Column(type="integer", nullable=true)
      */
     private $com;
