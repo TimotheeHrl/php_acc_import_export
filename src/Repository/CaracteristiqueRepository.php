@@ -41,11 +41,11 @@ class CaracteristiqueRepository extends ServiceEntityRepository
     /**
      * @return Caracteristique[] Returns an array of Caracteristique objects
      */
-    public function findByNum_Acc(string $num_Acc): array
+    public function findByNum_Acc(int $num_acc): array
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.num_Acc = :val')
-            ->setParameter('val', $num_Acc)
+            ->andWhere('c.num_acc = :val')
+            ->setParameter('val', $num_acc)
             ->getQuery()
             ->getResult();
     }

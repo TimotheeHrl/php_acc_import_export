@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use OpenApi\Annotations as OA;
 use OpenApi\Annotations\Parameter;
+use phpDocumentor\Reflection\Types\Integer;
 
 class CaracteristiqueController extends AbstractController
 {
@@ -42,14 +43,14 @@ class CaracteristiqueController extends AbstractController
     /**
      * @OA\Get(
      *     path="/api/caracteristiques/{id}",
-     *     summary="Finds Pets by tags",
+     *     summary="get caracteristique by id",
      *     tags={"id"},
-     *     description="Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
-     *     operationId="find carac by id",
+     *     description="get caracteristique by id",
+     *     operationId="find All",
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
-     *         description="Tags to filter by",
+     *         description="id of this item",
      *         required=true,
      *         @OA\Schema(
      *             type="integer"),
@@ -77,18 +78,73 @@ class CaracteristiqueController extends AbstractController
     }
 
     /**
-     * @Route("/api/usager/{num_Acc}", name="searchByNum_Acc_caracteristiques", methods={"GET","HEAD"})
+     * @OA\Get(
+     *     path="/api/caracteristiques/num_acc/{num_acc}",
+     *     tags={"num_acc"},
+     *     description="caracteristiques par numéro d'accident",
+     *     operationId="find carac by num_acc",
+     *     @OA\Parameter(
+     *         name="num_acc",
+     *         in="path",
+     *         description="num_acc of this item",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"),
+     *         style="form"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @OA\Schema(
+     *             type="array",
+     *             @OA\Items(ref="#/components/schemas/CaracteristiqueSingle")
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response="400",
+     *         description="Invalid value",
+     *     ),
+     *     deprecated=false
+     * )
      */
-    public function searchByNum_Acc(CaracteristiqueRepository $caracteristiqueRepository, string $num_Acc): JsonResponse
+    public function searchByNum_Acc(CaracteristiqueRepository $caracteristiqueRepository, int $num_acc): JsonResponse
     {
-        $data = $caracteristiqueRepository->findByNum_Acc($num_Acc);
+
+        $data = $caracteristiqueRepository->findByNum_Acc($num_acc);
         return $this->json($data);
     }
 
     /**
-     * @Route("/api/caracteristiques/paginated/{row_index}", name="getPaginatedReccords", methods={"POST","HEAD"})
+     *   * @OA\Get(
+     *     path="/api/caracteristiques/{row_index}",
+     *     tags={"row_index"},
+     *     description="pages de caracteristiques par numéro row_index",
+     *     operationId="find carac by row_index",
+     *     @OA\Parameter(
+     *         name="row_index",
+     *         in="path",
+     *         description="row_index of this item",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"),
+     *         style="form"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @OA\Schema(
+     *             type="array",
+     *             @OA\Items(ref="#/components/schemas/CaracteristiqueSingle")
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response="400",
+     *         description="Invalid value",
+     *     ),
+     *     deprecated=false
+     * )
      */
-    public function getPaginatedReccords(CaracteristiqueRepository $caracteristiqueRepository, Request $request, int $row_index): JsonResponse
+    public function getPaginatedReccords(CaracteristiqueRepository $caracteristiqueRepository, int $row_index): JsonResponse
     {
         $data = $caracteristiqueRepository->getPaginatedRecords($row_index);
         return $this->json($data);

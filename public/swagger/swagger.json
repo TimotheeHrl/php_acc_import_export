@@ -37,14 +37,74 @@
                 "tags": [
                     "id"
                 ],
-                "summary": "Finds Pets by tags",
-                "description": "Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
-                "operationId": "find carac by id",
+                "summary": "get caracteristique by id",
+                "description": "get caracteristique by id",
+                "operationId": "find All",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Tags to filter by",
+                        "description": "id of this item",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid value"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/caracteristiques/num_acc/{num_acc}": {
+            "get": {
+                "tags": [
+                    "num_acc"
+                ],
+                "description": "caracteristiques par numéro d'accident",
+                "operationId": "find carac by num_acc",
+                "parameters": [
+                    {
+                        "name": "num_acc",
+                        "in": "path",
+                        "description": "num_acc of this item",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid value"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/caracteristiques/{row_index}": {
+            "get": {
+                "tags": [
+                    "row_index"
+                ],
+                "description": "pages de caracteristiques par numéro row_index",
+                "operationId": "find carac by row_index",
+                "parameters": [
+                    {
+                        "name": "row_index",
+                        "in": "path",
+                        "description": "row_index of this item",
                         "required": true,
                         "style": "form",
                         "schema": {
