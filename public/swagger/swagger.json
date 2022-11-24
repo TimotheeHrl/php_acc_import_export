@@ -1,5 +1,15 @@
 {
     "openapi": "3.0.0",
+    "info": {
+        "title": "Accidents",
+        "version": "0.1"
+    },
+    "servers": [
+        {
+            "url": "https://localhost:8000",
+            "description": "accident de 2021 en france"
+        }
+    ],
     "paths": {
         "/api/caracteristiques": {
             "get": {
@@ -13,7 +23,7 @@
                                     "description": "Liste des caracteristiques",
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/Caracteristique"
+                                        "$ref": "#/components/schemas/CaracteristiqueDisplayOnMap"
                                     }
                                 }
                             }
@@ -24,32 +34,41 @@
         },
         "/api/caracteristiques/{id}": {
             "get": {
-                "operationId": "6f566a0a11734dde0a0197730618a3d7",
+                "tags": [
+                    "id"
+                ],
+                "summary": "Finds Pets by tags",
+                "description": "Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
+                "operationId": "find carac by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Tags to filter by",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "Affiche une caracteristique",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "description": "Affiche une caracteristique",
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Caracteristique"
-                                    }
-                                }
-                            }
-                        }
+                        "description": "successful operation"
                     },
-                    "404": {
-                        "description": "Caracteristique non trouvée"
+                    "400": {
+                        "description": "Invalid value"
                     }
-                }
+                },
+                "deprecated": false
             }
         }
     },
     "components": {
         "schemas": {
-            "Caracteristique": {
+            "CaracteristiqueSingle": {
+                "title": "Caracteristique all fields",
+                "description": "Caracteristique des accidents",
                 "properties": {
                     "id": {
                         "description": "Identifiant de la caracteristique",
@@ -79,40 +98,67 @@
                         "description": "lumière au moment de l'accident",
                         "type": "integer"
                     },
-                    "dep": {
-                        "description": "departement de l'accident",
-                        "type": "integer"
-                    },
                     "agg": {
-                        "description": "localisation: agglo / hors-agglo",
+                        "description": "dans agglomeration/hors agglomeration",
                         "type": "integer"
                     },
-                    "inte": {
-                        "description": "type d'intersection",
+                    "int": {
+                        "description": "intersection de l'accident",
                         "type": "integer"
                     },
                     "atm": {
-                        "description": "condition météo",
+                        "description": "condition metéos de l'accident",
                         "type": "integer"
                     },
                     "col": {
-                        "description": "type de collision",
-                        "type": "integer"
-                    },
-                    "adr": {
-                        "description": "adresse postal de l'accident",
-                        "type": "string"
-                    },
-                    "lat": {
-                        "description": "latitude de l'accident",
-                        "type": "integer"
-                    },
-                    "longi": {
-                        "description": "longitude de l'accident",
+                        "description": "type de collision de l'accident",
                         "type": "integer"
                     },
                     "com": {
-                        "description": "commune de l'accident",
+                        "description": "code commune de l'accident",
+                        "type": "integer"
+                    },
+                    "dep": {
+                        "description": "code département de l'accident",
+                        "type": "integer"
+                    },
+                    "adr": {
+                        "description": "adresse postale",
+                        "type": "string"
+                    },
+                    "lat": {
+                        "description": "latitude",
+                        "type": "integer"
+                    },
+                    "longi": {
+                        "description": "longitude",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "CaracteristiqueDisplayOnMap": {
+                "title": "Caracteristique for display on a map",
+                "description": "Caracteristique des accidents",
+                "properties": {
+                    "id": {
+                        "description": "Identifiant de la caracteristique",
+                        "type": "integer"
+                    },
+                    "num_acc": {
+                        "description": "Numéro d'accident",
+                        "type": "integer"
+                    },
+                    "lum": {
+                        "description": "lumière au moment de l'accident",
+                        "type": "integer"
+                    },
+                    "lat": {
+                        "description": "latitude",
+                        "type": "integer"
+                    },
+                    "longi": {
+                        "description": "longitude",
                         "type": "integer"
                     }
                 },

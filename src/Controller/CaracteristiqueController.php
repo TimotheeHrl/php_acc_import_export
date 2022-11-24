@@ -16,20 +16,22 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use OpenApi\Annotations as OA;
-
+use OpenApi\Annotations\Parameter;
 
 class CaracteristiqueController extends AbstractController
 {
 
     /**
+     * * @OA\Info(title="Accidents", version="0.1")
+     * @OA\Server(url="https://localhost:8000",
+     * description="accident de 2021 en france")
      * @OA\Get(path="/api/caracteristiques",
      * @OA\Response(response="200", 
      * description="Liste des caracteristiques",
-     * @OA\JsonContent(type="array", description="Liste des caracteristiques", @OA\Items(ref="#/components/schemas/Caracteristique"))
+     * @OA\JsonContent(type="array", description="Liste des caracteristiques", @OA\Items(ref="#/components/schemas/CaracteristiqueDisplayOnMap"))
      * )
      * )
      */
-
     public function list(CaracteristiqueRepository $caracteristiqueRepository): JsonResponse
     {
         $caracteristiques = $caracteristiqueRepository->findAll();
@@ -38,20 +40,35 @@ class CaracteristiqueController extends AbstractController
     }
 
     /**
-     *@OA\Get(path="/api/caracteristiques/{id}",
-     *@OA\Response(response="200",
-     *description="Affiche une caracteristique",
-     *@OA\Parameter(
-     *name="id",
-     *in="path",
-     *description="Identifiant de la caracteristique",
-     *required=true,
-     *@OA\Schema(type="integer")
-     *),
-     *@OA\JsonContent(type="array", description="Affiche une caracteristique", @OA\Items(ref="#/components/schemas/Caracteristique"))
-     *),
-     *@OA\Response(response="404", description="Caracteristique non trouvée")
-     *)
+     * @OA\Get(
+     *     path="/api/caracteristiques/{id}",
+     *     summary="Finds Pets by tags",
+     *     tags={"id"},
+     *     description="Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
+     *     operationId="find carac by id",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Tags to filter by",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"),
+     *         style="form"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @OA\Schema(
+     *             type="array",
+     *             @OA\Items(ref="#/components/schemas/CaracteristiqueSingle")
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response="400",
+     *         description="Invalid value",
+     *     ),
+     *     deprecated=false
+     * )
      */
     public function show(CaracteristiqueRepository $caracteristiqueRepository, int $id): JsonResponse
     {

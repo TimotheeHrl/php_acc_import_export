@@ -1,0 +1,110 @@
+openapi: 3.0.0
+info:
+  title: Accidents
+  version: '0.1'
+servers:
+  -
+    url: 'http://localhost:8080'
+    description: 'accident de 2021 en france'
+paths:
+  /api/caracteristiques:
+    get:
+      operationId: 5728a9cf244bcce91bd269fcba11245d
+      responses:
+        '200':
+          description: 'Liste des caracteristiques'
+          content:
+            application/json:
+              schema:
+                description: 'Liste des caracteristiques'
+                type: array
+                items:
+                  $ref: '#/components/schemas/CaracteristiqueDisplayOnMap'
+  '/api/caracteristiques/{id}':
+    get:
+      operationId: 6f566a0a11734dde0a0197730618a3d7
+      responses:
+        '200':
+          description: 'Affiche une caracteristique'
+          content:
+            application/json:
+              schema:
+                description: 'Affiche une caracteristique'
+                type: array
+                items:
+                  $ref: '#/components/schemas/CaracteristiqueSingle'
+components:
+  schemas:
+    CaracteristiqueSingle:
+      title: 'Caracteristique all fields'
+      description: 'Caracteristique des accidents'
+      properties:
+        id:
+          description: 'Identifiant de la caracteristique'
+          type: integer
+        num_acc:
+          description: 'Numéro d''accident'
+          type: integer
+        jour:
+          description: 'jour de l''accident'
+          type: integer
+        mois:
+          description: 'mois de l''accident'
+          type: integer
+        an:
+          description: 'année de l''accident'
+          type: integer
+        hrmn:
+          description: 'heure de l''accident'
+          type: string
+        lum:
+          description: 'lumière au moment de l''accident'
+          type: integer
+        agg:
+          description: 'dans agglomeration/hors agglomeration'
+          type: integer
+        int:
+          description: 'intersection de l''accident'
+          type: integer
+        atm:
+          description: 'condition metéos de l''accident'
+          type: integer
+        col:
+          description: 'type de collision de l''accident'
+          type: integer
+        com:
+          description: 'code commune de l''accident'
+          type: integer
+        dep:
+          description: 'code département de l''accident'
+          type: integer
+        adr:
+          description: 'adresse postale'
+          type: string
+        lat:
+          description: latitude
+          type: integer
+        longi:
+          description: longitude
+          type: integer
+      type: object
+    CaracteristiqueDisplayOnMap:
+      title: 'Caracteristique for display on a map'
+      description: 'Caracteristique des accidents'
+      properties:
+        id:
+          description: 'Identifiant de la caracteristique'
+          type: integer
+        num_acc:
+          description: 'Numéro d''accident'
+          type: integer
+        lum:
+          description: 'lumière au moment de l''accident'
+          type: integer
+        lat:
+          description: latitude
+          type: integer
+        longi:
+          description: longitude
+          type: integer
+      type: object
