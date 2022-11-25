@@ -7,7 +7,7 @@ show_usager:
   controller: App\Controller\UsagerController::show
 
 searchByNum_Acc_usagers:
-  path: /api/usagers/num_acc/{num_Acc}
+  path: /api/usagers/num_acc/{num_acc}
   controller: App\Controller\UsagerController::searchByNum_Acc
 
 caracteristique_list:
@@ -17,9 +17,10 @@ caracteristique_list:
 show_caracterisque:
   path: /api/caracteristiques/{id}
   controller: App\Controller\CaracteristiqueController::show
+  methods: GET
 
 searchByNum_Acc_caracteristiques:
-  path: /api/caracteristiques/num_acc/{num_Acc}
+  path: /api/caracteristiques/num_acc/{num_acc}
   controller: App\Controller\CaracteristiqueController::searchByNum_Acc
 
 lieux_list:
@@ -31,7 +32,7 @@ show_lieux:
   controller: App\Controller\LieuxController::show
 
 searchByNum_Acc_lieux:
-  path: /api/lieux/num_acc/{num_Acc}
+  path: /api/lieux/num_acc/{num_acc}
   controller: App\Controller\LieuxController::searchByNum_Acc
 
 vehicule_list:
@@ -43,15 +44,15 @@ show_vehicule:
   controller: App\Controller\VehiculeController::show
 
 searchByNum_Acc_vehicule:
-  path: /api/vehicules/num_acc/{num_Acc}
+  path: /api/vehicules/num_acc/{num_acc}
   controller: App\Controller\VehiculeController::searchByNum_Acc
 
 Accident_File_Json:
-  path: /api/accidents/json/{num_Acc}
+  path: /api/accidents/json/{num_acc}
   controller: App\Controller\AccidentController::getAccidentJsonFile
 
 Accident_File_Csv:
-  path: /api/accidents/csv/{num_Acc}
+  path: /api/accidents/csv/{num_acc}
   controller: App\Controller\AccidentController::getAccidentCsvFile
 
 uploadCsvFileVehicule:
@@ -64,7 +65,8 @@ uploadCsvFileUsagers:
 
 uploadCsvFileCaracteristques:
   path: /api/caracteristiques/new
-  controller: App\Controller\CaracteristiquesController::new
+  controller: App\Controller\CaracteristiqueController::new
+  methods: POST
 
 uploadCsvFileLieux:
   path: /api/lieux/new

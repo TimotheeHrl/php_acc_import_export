@@ -41,11 +41,11 @@ class LieuxRepository extends ServiceEntityRepository
     /**
      * @return Lieux[] Returns an array of Caracteristique objects
      */
-    public function findByNum_Acc(string $num_Acc): array
+    public function findByNum_Acc(string $num_acc): array
     {
         return $this->createQueryBuilder('l')
-            ->andWhere('l.num_Acc = :val')
-            ->setParameter('val', $num_Acc)
+            ->andWhere('l.num_acc = :val')
+            ->setParameter('val', $num_acc)
             ->getQuery()
             ->getResult();
     }

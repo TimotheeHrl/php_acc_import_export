@@ -40,18 +40,18 @@ class VehiculeController extends AbstractController
 
 
     /**
-     * @Route("/api/vehicule/{num_Acc}", name="searchByNum_Acc_vehicule", methods={"GET","HEAD"})
+     * @Route("/api/vehicule/{num_acc}", name="searchByNum_Acc_vehicule", methods={"GET","HEAD"})
      */
-    public function searchByNum_Acc(VehiculeRepository $vehiculeRepository, string $num_Acc): JsonResponse
+    public function searchByNum_Acc(VehiculeRepository $vehiculeRepository, string $num_acc): JsonResponse
     {
-        $data = $vehiculeRepository->findByNum_Acc($num_Acc);
+        $data = $vehiculeRepository->findByNum_Acc($num_acc);
 
         return $this->json($data);
     }
 
 
     /**
-     * @Route("/api/vehicule/{num_Acc}", name="new_vehicules", methods={"POST","HEAD"})
+     * @Route("/api/vehicule/{num_acc}", name="new_vehicules", methods={"POST","HEAD"})
      */
     public function new(Request $request, SluggerInterface $slugger, VehiculeRepository $vehiculeRepository): JsonResponse
     {

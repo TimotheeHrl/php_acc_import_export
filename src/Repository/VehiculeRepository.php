@@ -42,11 +42,11 @@ class VehiculeRepository extends ServiceEntityRepository
     /**
      * @return Vehicule[] Returns an array of Caracteristique objects
      */
-    public function findByNum_Acc(string $num_Acc): array
+    public function findByNum_Acc(string $num_acc): array
     {
         return $this->createQueryBuilder('v')
-            ->andWhere('v.num_Acc = :val')
-            ->setParameter('val', $num_Acc)
+            ->andWhere('v.num_acc = :val')
+            ->setParameter('val', $num_acc)
             ->getQuery()
             ->getResult();
     }

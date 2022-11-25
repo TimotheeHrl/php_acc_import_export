@@ -24,14 +24,14 @@ class AccidentController extends AbstractController
         LieuxRepository $lieuxRepository,
         UsagersRepository $usagersRepository,
         VehiculeRepository $vehiculeRepository,
-        string $num_Acc
+        string $num_acc
     ): Response {
         $accident = [];
 
-        $caracteristiques = $caracteristiqueRepository->findByNum_Acc($num_Acc);
-        $lieux = $lieuxRepository->findByNum_Acc($num_Acc);
-        $usagers = $usagersRepository->findByNum_Acc($num_Acc);
-        $vehicules = $vehiculeRepository->findByNum_Acc($num_Acc);
+        $caracteristiques = $caracteristiqueRepository->findByNum_Acc($num_acc);
+        $lieux = $lieuxRepository->findByNum_Acc($num_acc);
+        $usagers = $usagersRepository->findByNum_Acc($num_acc);
+        $vehicules = $vehiculeRepository->findByNum_Acc($num_acc);
 
         $accident['caracteristiques'] = $caracteristiques;
         $accident['lieux'] = $lieux;
@@ -56,14 +56,14 @@ class AccidentController extends AbstractController
         LieuxRepository $lieuxRepository,
         UsagersRepository $usagersRepository,
         VehiculeRepository $vehiculeRepository,
-        string $num_Acc
+        string $num_acc
     ): Response {
         $accident = [];
 
-        $caracteristiques = $caracteristiqueRepository->findByNum_Acc($num_Acc);
-        $lieux = $lieuxRepository->findByNum_Acc($num_Acc);
-        $usagers = $usagersRepository->findByNum_Acc($num_Acc);
-        $vehicules = $vehiculeRepository->findByNum_Acc($num_Acc);
+        $caracteristiques = $caracteristiqueRepository->findByNum_Acc($num_acc);
+        $lieux = $lieuxRepository->findByNum_Acc($num_acc);
+        $usagers = $usagersRepository->findByNum_Acc($num_acc);
+        $vehicules = $vehiculeRepository->findByNum_Acc($num_acc);
 
         $accident['caracteristiques'] = $caracteristiques;
         $accident['lieux'] = $lieux;

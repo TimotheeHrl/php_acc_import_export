@@ -46,6 +46,7 @@ class CaracteristiqueRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('c')
             ->andWhere('c.num_acc = :val')
             ->setParameter('val', $num_acc)
+            ->orderBy('c.id', 'ASC')
             ->getQuery()
             ->getResult();
     }

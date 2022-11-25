@@ -11,6 +11,44 @@
         }
     ],
     "paths": {
+        "/api/caracteristiques/new": {
+            "post": {
+                "tags": [
+                    "Media"
+                ],
+                "summary": "Upload document",
+                "description": "",
+                "operationId": "6087348bcb41022552c65d6072be8d1d",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/octet-stream": {
+                            "schema": {
+                                "required": [
+                                    "content"
+                                ],
+                                "properties": {
+                                    "content": {
+                                        "description": "Binary content of file",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
         "/api/caracteristiques": {
             "get": {
                 "operationId": "5728a9cf244bcce91bd269fcba11245d",
@@ -32,37 +70,6 @@
                 }
             }
         },
-        "/api/caracteristiques/{id}": {
-            "get": {
-                "tags": [
-                    "id"
-                ],
-                "summary": "get caracteristique by id",
-                "description": "get caracteristique by id",
-                "operationId": "find All",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of this item",
-                        "required": true,
-                        "style": "form",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation"
-                    },
-                    "400": {
-                        "description": "Invalid value"
-                    }
-                },
-                "deprecated": false
-            }
-        },
         "/api/caracteristiques/num_acc/{num_acc}": {
             "get": {
                 "tags": [
@@ -78,7 +85,7 @@
                         "required": true,
                         "style": "form",
                         "schema": {
-                            "type": "integer"
+                            "type": "string"
                         }
                     }
                 ],
@@ -93,12 +100,12 @@
                 "deprecated": false
             }
         },
-        "/api/caracteristiques/{row_index}": {
+        "/api/caracteristiques/paginated/{row_index}": {
             "get": {
                 "tags": [
                     "row_index"
                 ],
-                "description": "pages de caracteristiques par numéro row_index",
+                "description": "50 caracteristiques par numéro row_index",
                 "operationId": "find carac by row_index",
                 "parameters": [
                     {
@@ -118,6 +125,97 @@
                     },
                     "400": {
                         "description": "Invalid value"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/caracteristiques/paginated_csv/{row_index}": {
+            "get": {
+                "tags": [
+                    "row_index"
+                ],
+                "description": "50 caracteristiques en csv par numéro row_index",
+                "operationId": "find carac csv by row_index",
+                "parameters": [
+                    {
+                        "name": "row_index",
+                        "in": "path",
+                        "description": "row_index of this item",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid value"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/caracteristiques/paginated_json/{row_index}": {
+            "get": {
+                "tags": [
+                    "row_index"
+                ],
+                "description": "50 caracteristiques json par numéro row_index",
+                "operationId": "find carac json by row_index",
+                "parameters": [
+                    {
+                        "name": "row_index",
+                        "in": "path",
+                        "description": "row_index of this item",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid value"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/caracteristiques/add_c": {
+            "post": {
+                "tags": [
+                    "caracteristique"
+                ],
+                "description": "Add a new caracteristique",
+                "operationId": "addCaracteristique",
+                "requestBody": {
+                    "description": "Caracteristique object that needs to be added to the store",
+                    "required": true,
+                    "content": {
+                        "application/xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CaracteristiqueSingle"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CaracteristiqueSingle"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
                     }
                 },
                 "deprecated": false
