@@ -55,7 +55,7 @@ class CaracteristiqueController extends AbstractController
     {
 
         // get all files 
-        
+
         if (!$request->files->get('caracteristiques')) {
             return new JsonResponse('to big', 400);
         } else {
@@ -308,5 +308,4 @@ class CaracteristiqueController extends AbstractController
         $response->headers->set('Content-Disposition', $disposition);
         return $response;
     }
-
-
+}
