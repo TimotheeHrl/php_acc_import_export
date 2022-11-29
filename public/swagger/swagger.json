@@ -1,15 +1,5 @@
 {
     "openapi": "3.0.0",
-    "info": {
-        "title": "Accidents",
-        "version": "0.1"
-    },
-    "servers": [
-        {
-            "url": "https://localhost:8000",
-            "description": "accident de 2021 en france"
-        }
-    ],
     "paths": {
         "/api/caracteristiques/new": {
             "post": {
@@ -45,27 +35,6 @@
                     },
                     "400": {
                         "description": "Bad Request"
-                    }
-                }
-            }
-        },
-        "/api/caracteristiques": {
-            "get": {
-                "operationId": "5728a9cf244bcce91bd269fcba11245d",
-                "responses": {
-                    "200": {
-                        "description": "Liste des caracteristiques",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "description": "Liste des caracteristiques",
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/CaracteristiqueDisplayOnMap"
-                                    }
-                                }
-                            }
-                        }
                     }
                 }
             }
@@ -185,37 +154,6 @@
                     },
                     "400": {
                         "description": "Invalid value"
-                    }
-                },
-                "deprecated": false
-            }
-        },
-        "/api/caracteristiques/add_c": {
-            "post": {
-                "tags": [
-                    "caracteristique"
-                ],
-                "description": "Add a new caracteristique",
-                "operationId": "addCaracteristique",
-                "requestBody": {
-                    "description": "Caracteristique object that needs to be added to the store",
-                    "required": true,
-                    "content": {
-                        "application/xml": {
-                            "schema": {
-                                "$ref": "#/components/schemas/CaracteristiqueSingle"
-                            }
-                        },
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/CaracteristiqueSingle"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "405": {
-                        "description": "Invalid input"
                     }
                 },
                 "deprecated": false

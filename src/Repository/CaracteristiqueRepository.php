@@ -119,7 +119,33 @@ class CaracteristiqueRepository extends ServiceEntityRepository
         }
         return $caracteristiques;
     }
-
+    /**
+     * @return Caracteristique[] Returns an array of Caracteristique objects
+     */
+    public function getCaracteristiquesByLocation(int $northeastlatitude, int $northeastlongitude, int $southwestlatitude, int $southwestlongitude): array
+    {
+        $entityManager = $this->getEntityManager();
+        $entityManager->getConnection()->getConfiguration()->setSQLLogger(null);
+        $entityManager->getConnection()->beginTransaction();
+        try {
+            $query = $entityManager->createQuery(
+                'SELECT c
+                 FROM App\Entity\Caracteristique c
+                 WHERE c.lat BETWEEN :southwestlatitude AND :northeastlatitude
+                 AND c.longi BETWEEN :southwestlongitude AND :northeastlongitude
+                 ORDER BY c.id ASC'
+            )->setParameter('northeastlatitude', $northeastlatitude)
+                ->setParameter('northeastlongitude', $northeastlongitude)
+                ->setParameter('southwestlatitude', $southwestlatitude)
+                ->setParameter('southwestlongitude', $southwestlongitude);
+            $caracteristiques = $query->getResult();
+            $entityManager->getConnection()->commit();
+        } catch (\Exception $e) {
+            $entityManager->getConnection()->rollBack();
+            throw $e;
+        }
+        return $caracteristiques;
+    }
     //    /**
     //     * @return Caracteristique[] Returns an array of Caracteristique objects
     //     */

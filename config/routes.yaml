@@ -111,3 +111,7 @@ getPaginatedReccordsVehiculesCsv:
 getPaginatedReccordsVehiculesJson:
   path: /api/vehicules/paginated_json/{row_index}
   controller: App\Controller\VehiculeController::getPaginatedReccordsJson
+
+getCaracteristiquesByLocation:
+  path: /api/caracteristiques/get_car_by_location/nela={northeastlatitude}/nelo={northeastlongitude}/swla={southwestlatitude}/swlo={southwestlongitude}
+  controller: App\Controller\CaracteristiqueController::getCaracteristiquesByLocation

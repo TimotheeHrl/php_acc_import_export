@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\CaracteristiqueRepository;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use App\Entity\Caracteristique;
@@ -16,7 +15,6 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use OpenApi\Annotations as OA;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class CaracteristiqueController extends AbstractController
 {
@@ -53,16 +51,13 @@ class CaracteristiqueController extends AbstractController
      */
     public function new(Request $request, SluggerInterface $slugger, CaracteristiqueRepository $caracteristiqueRepository): JsonResponse
     {
-
-        // get all files 
-
-        if (!$request->files->get('caracteristiques')) {
-            return new JsonResponse('to big', 400);
+        if (!$request->files->get('cc')) {
+            return new JsonResponse('rien', 400);
         } else {
             /** @var UploadedFile $uploadedFile */
             $uploadedFile = $request->files->get('caracteristiques');
             $fileSize = $uploadedFile->getSize();
-            if ($fileSize > 1000000000000) {
+            if ($fileSize > 10000000) {
                 return $this->json(['error' => 'File size too large']);
             } else {
                 $destination = $this->getParameter('kernel.project_dir') . '/public/uploads';
@@ -113,23 +108,7 @@ class CaracteristiqueController extends AbstractController
         }
     }
 
-    /**
-     * * @OA\Info(title="Accidents", version="0.1")
-     * @OA\Server(url="https://localhost:8000",
-     * description="accident de 2021 en france")
-     * @OA\Get(path="/api/caracteristiques",
-     * @OA\Response(response="200", 
-     * description="Liste des caracteristiques",
-     * @OA\JsonContent(type="array", description="Liste des caracteristiques", @OA\Items(ref="#/components/schemas/CaracteristiqueDisplayOnMap"))
-     * )
-     * )
-     */
-    public function list(CaracteristiqueRepository $caracteristiqueRepository): JsonResponse
-    {
-        $caracteristiques = $caracteristiqueRepository->findAll();
 
-        return $this->json($caracteristiques);
-    }
 
     /**
      * 
@@ -307,5 +286,18 @@ class CaracteristiqueController extends AbstractController
         );
         $response->headers->set('Content-Disposition', $disposition);
         return $response;
+    }
+
+
+
+    public function getCaracteristiquesByLocation(CaracteristiqueRepository $caracteristiqueRepository, Request $request): JsonResponse
+    {
+        $northeastlatitude = $request->get('northeastlatitude');
+        $northeastlongitude = $request->get('northeastlongitude');
+        $southwestlatitude = $request->get('southwestlatitude');
+        $southwestlongitude = $request->get('southwestlongitude');
+
+        $data = $caracteristiqueRepository->getCaracteristiquesByLocation($northeastlatitude, $northeastlongitude, $southwestlatitude, $southwestlongitude);
+        return $this->json($data);
     }
 }
