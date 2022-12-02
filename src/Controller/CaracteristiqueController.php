@@ -292,10 +292,18 @@ class CaracteristiqueController extends AbstractController
 
     public function getCaracteristiquesByLocation(CaracteristiqueRepository $caracteristiqueRepository, Request $request): JsonResponse
     {
-        $northeastlatitude = $request->get('northeastlatitude');
-        $northeastlongitude = $request->get('northeastlongitude');
-        $southwestlatitude = $request->get('southwestlatitude');
-        $southwestlongitude = $request->get('southwestlongitude');
+        $northeastlatitude = $request->query->get('northeastlatitude');
+        $northeastlongitude = $request->query->get('northeastlongitude');
+        $southwestlatitude = $request->query->get('southwestlatitude');
+        $southwestlongitude = $request->query->get('southwestlongitude');
+        // turn the string into a float and slice data to 6 decimal
+        $northeastlatitude = floatval(substr($northeastlatitude, 0, 7));
+        $northeastlongitude = floatval(substr($northeastlongitude, 0, 7));
+        $southwestlatitude = floatval(substr($southwestlatitude, 0, 7));
+        $southwestlongitude = floatval(substr($southwestlongitude, 0, 7));
+
+
+
 
         $data = $caracteristiqueRepository->getCaracteristiquesByLocation($northeastlatitude, $northeastlongitude, $southwestlatitude, $southwestlongitude);
         return $this->json($data);

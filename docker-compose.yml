@@ -1,44 +1,17 @@
 version: '3.8'
 
 services:
-  server:
-    build: .
-    container_name: 'symphonyserver'
-    depends_on:
-      - database
-    volumes:
-      - .:/var/www/project
-
-  proxy:
-    image: nginx:1.9.15-alpine
-    container_name: 'test_proxy'
-    ports:
-      - target: 80
-        published: 8080
-        protocol: tcp
-    volumes:
-      - ./docker/nginx:/etc/nginx/conf.d
-      - ./public:/var/www/project
-    depends_on:
-      - server
-      - database
-
+  
   database:
     image: mysql:5.7
+    restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: acc
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root     
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3307:3306"
     volumes:
-      - ./db/dump.sql:/acc.sql
-      - dbvol:/var/lib/mysql
-    command: "--init-file /acc.sql"
+ 
+   
 
-networks:
-  default:
-    driver: bridge
 
-volumes:
-  database:
-    driver: local
+

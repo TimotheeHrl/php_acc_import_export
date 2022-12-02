@@ -18,10 +18,6 @@ RUN apt update && apt install -y \
 
 RUN pecl install xdebug-3.1.0beta2
 
-COPY docker/php-fpm/php-fpm.conf /usr/local/etc/php-fpm.conf
-COPY docker/php/xdebug.ini /usr/local/etc/php/conf.d
-COPY docker/php/php.ini /usr/local/etc/php/php.ini
-COPY docker/php/opcache.ini /usr/local/etc/php/conf.d
 
 RUN docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql
 
@@ -47,5 +43,7 @@ RUN touch /var/log/php-fpm.access.log
 RUN chown -R tim:tim /var/log/php-fpm.error.log /var/log/php-fpm.access.log
 
 USER tim
+
+RUN 
 
 CMD ["php-fpm"]

@@ -122,7 +122,7 @@ class CaracteristiqueRepository extends ServiceEntityRepository
     /**
      * @return Caracteristique[] Returns an array of Caracteristique objects
      */
-    public function getCaracteristiquesByLocation(int $northeastlatitude, int $northeastlongitude, int $southwestlatitude, int $southwestlongitude): array
+    public function getCaracteristiquesByLocation(string $northeastlatitude, string $northeastlongitude, string $southwestlatitude, string $southwestlongitude): array
     {
         $entityManager = $this->getEntityManager();
         $entityManager->getConnection()->getConfiguration()->setSQLLogger(null);
