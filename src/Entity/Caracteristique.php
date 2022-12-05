@@ -86,12 +86,12 @@ class Caracteristique
     private $lat;
 
     /**
-     * @ORM\Column(type="float", scale="2")
+     * @ORM\Column(type="float")
      */
     private $longi;
 
     /**
-     * @ORM\Column(type="float", scale="2")
+     * @ORM\Column(type="float")
      */
     private $com;
 
