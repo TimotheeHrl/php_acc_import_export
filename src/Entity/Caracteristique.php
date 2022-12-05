@@ -86,12 +86,12 @@ class Caracteristique
     private $lat;
 
     /**
-     * @ORM\Column(type="float", nullable=true)
+     * @ORM\Column(type="float", scale="2")
      */
     private $longi;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="float", scale="2")
      */
     private $com;
 
@@ -244,24 +244,24 @@ class Caracteristique
         return $this;
     }
 
-    public function getLat(): ?int
+    public function getLat(): ?float
     {
         return $this->lat;
     }
 
-    public function setLat(?int $lat): self
+    public function setLat(?float $lat): self
     {
         $this->lat = $lat;
 
         return $this;
     }
 
-    public function getLongi(): ?int
+    public function getLongi(): ?float
     {
         return $this->longi;
     }
 
-    public function setLongi(?int $longi): self
+    public function setLongi(?float $longi): self
     {
         $this->longi = $longi;
 
