@@ -115,3 +115,7 @@ getPaginatedReccordsVehiculesCsv:
 getPaginatedReccordsVehiculesJson:
   path: /api/vehicules/paginated_json/{row_index}
   controller: App\Controller\VehiculeController::getPaginatedReccordsJson
+
+getAccidentByNumAcc:
+  path: /api/accidents/num_acc
+  controller: App\Controller\AccidentController::getAccidentByNumAcc

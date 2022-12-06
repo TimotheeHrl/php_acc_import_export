@@ -13,6 +13,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Encoder\CsvEncoder;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 class AccidentController extends AbstractController
 {
@@ -85,5 +88,27 @@ class AccidentController extends AbstractController
         );
         $response->headers->set('Content-Disposition', $disposition);
         return $response;
+    }
+
+    public function getAccidentByNumAcc(
+        CaracteristiqueRepository $caracteristiqueRepository,
+        LieuxRepository $lieuxRepository,
+        UsagersRepository $usagersRepository,
+        VehiculeRepository $vehiculeRepository,
+        Request $request
+    ): JsonResponse {
+        $accident = [];
+        $num_acc = $request->query->get('num_acc');
+        $caracteristiques = $caracteristiqueRepository->findByNum_Acc($num_acc);
+        $lieux = $lieuxRepository->findByNum_Acc($num_acc);
+        $usagers = $usagersRepository->findByNum_Acc($num_acc);
+        $vehicules = $vehiculeRepository->findByNum_Acc($num_acc);
+
+        $accident['caracteristiques'] = $caracteristiques;
+        $accident['lieux'] = $lieux;
+        $accident['usagers'] = $usagers;
+        $accident['vehicules'] = $vehicules;
+
+        return $this->json($accident);
     }
 }
